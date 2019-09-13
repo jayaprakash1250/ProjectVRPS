@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+h1 {
+  text-align: center;  
+}
+
+textarea, select,input[type="text"],[type="email"],[type="date"],[type="textarea"],[type="number"] {
+  padding: 10px;
+  width: 325px;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 17px;
+  font-family: Raleway;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  opacity: 1;
+}
+form input:focus,form input:focus
+{
+ width: 350px;
+ border-color: #2ecc71;
+
+}
+form input[type="radio"]:focus
+{
+ width:15px;
+ border-color: #2ecc71;
+
+}
+form input[type="button"]:focus
+{
+ width: 50px;
+ 
+}
+form input[type="submit"],[type="button"]
+{
+  margin: 20px auto;
+  color: black;
+    padding: 14px 40px;
+    border-radius: 20px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+form input[type="submit"]:hover{
+   background-color: #4CAF50;
+}
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50;
+}
+@charset "ISO-8859-1";
+div {
+    padding: 10px;
+}
+fieldset {
+    padding: 100px;
+    width: 500px;
+    margin: 0px auto;
+}
+label {
+   display: inline-block;
+    width: 200px;
+    margin-right: 30px;
+    text-align: right;
+    font-style: oblique;
+    font-family: cursive;
+    color: olivedrab;
+}
+
+</style>
+<body>
+
+<form id="regForm" action="/register">
+  <h1>Register</h1>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab"><h3>Personal Details:</h3>
+   <div>
+        <label>Full Name(*)</label> <input type="text" required="required"
+          name="fullName"
+        >
+      </div>
+      <div>
+        <label>DOB</label> <input type="date" required="required" name="dob">
+      </div>
+      <div>
+        <label>Gender</label> 
+        <input name="gender" type="Radio" value="male"
+          checked="checked"
+        > Male<input name="gender" type="Radio" placeholder=""
+          value="female"
+        > Female
+      </div>
+      <div>
+        <label>Mobile(*)</label> <input type="text" name="mobile"
+          required="required"
+        >
+      </div>
+      <div>
+        <label>Email(*)</label> <input type="email" required="required"
+          name=email
+        >
+      </div>
+      <div>
+        <label>Address</label>
+        <textarea rows="" cols="" name="address"></textarea>
+      </div>
+  </div>
+  <div class="tab"><h3>Work Details:<h3>
+   <div>
+        <label>Designation(*)</label> <input type="text" required="required"
+          name="designation"
+        >
+      </div>
+      <div>
+        <label>Current CTC(*)</label> <input type="number" required="required"
+          name="ctc"
+        >
+      </div>
+      <div>
+        <label>Current Location(*)</label> <input type="text"
+          required="required" name="currentLocation"
+        >
+      </div>
+      <div>
+        <label>Required Location(*)</label> <input type="text"
+          required="required" name="requiredLocation"
+        >
+      </div>
+      <div>
+        <label>Experience(*)</label> <input type="text" required="required"
+          name="experience"
+        >
+      </div>
+      <div>
+        <label>Applied Job<small>(required)</small></label> <select
+          name="appliedjob" 
+        >
+          <option disabled="" selected="">- Tier -</option>
+          <option value="tier-1">Tier-1</option>
+          <option value="tier-2">Tier-2</option>
+          <option value="tier-3">Tier-3</option>
+        </select>
+      </div>
+      <div >
+        <div >
+          <label>Skills </label> <input name="skills" type="textarea"
+            placeholder=" c , java, oracle"
+          >
+        </div>
+      </div>
+  </div>
+  <div class="tab"><h3>Best Project:<h3>
+    <div id="project">
+         <div>
+            <label>ProjectTitle</label>
+          
+            <input type="text" name="title[]" placeholder="project title">
+          </div>
+          <div>
+          <label>Project startdate </label>
+          
+            <input type="date" name="startdate[]">
+          </div>
+          <div>
+          <label>Project Enddate </label>
+          
+            <input type="date" name="enddate[]">
+          </div>
+        
+       
+          <div >
+            <label>ProjectDescription </label> <input name="projects[]"
+              type="textarea"  rows=""
+              placeholder="projectDescription" >
+          </div>
+        
+      
+      
+    </div>
+   
+      </div>
+  <div class="tab"><h3>Education Details:<h3>
+                        <div >
+                                       
+                                        <div >
+                                            <h5 > X Class </h5>
+                                        </div>
+                                        
+                                      
+                                          <div >
+                                                <label>School Name</label>
+                                                <input type="text" name="schoolName"  placeholder="Enter your School Name,place">
+                                            </div>
+                                     
+                                      
+                                      
+                                          <div >
+                                              <label>Percentage</label>
+                                              
+                                                  <input type="number" name="schoolPercent"  min="0" max="100" placeholder="Enter your Percentage">
+                                                  <span>%</span>
+                                              
+                                          </div>
+                                      
+                                     
+                                          <div >
+                                              <label>Year Of Pass</label>
+                                              
+                                                  <input type="number" name="schoolPassYear"  min="1950" max="2020" placeholder="Year of pass">
+                                                
+                                          </div>
+                                      
+                                      <div>
+                                            <h5 class="info-text"> 12th Class/Diploma </h5>
+                                        </div>
+                                        
+                                          <div >
+                                              <label>class</label>
+                                              <select name="board" >
+                                                    <option disabled="" selected="">- class -</option>
+                                                    <option value="state"> 12th class </option>
+                                                    <option value="central">Diploma </option>
+                                                    <option value="others">Others </option>
+                                                </select>
+                                          </div>
+                                     
+                                      
+                                      
+                                          <div >
+                                                <label>College name</label>
+                                                <input type="text" name="collegeName"  placeholder="Enter your college Name,place">
+                                            </div>
+                                    
+                                      
+                                      
+                                          <div >
+                                              <label>Percentage</label>
+                                              
+                                                  <input type="number" name="collegePercent" min="0" max="100" placeholder="Enter your Percentage">
+                                                  <span>%</span>
+                                              
+                                          </div>
+                                     
+                                      
+                                          <div >
+                                              <label>Year Of Pass</label>
+                                              <input type="number" name="collegePassYear" min="1950" max="2020" placeholder="Year of pass">
+                                           </div>
+                                     
+                                      <div>
+                                            <h5 class="info-text"> Graduation </h5>
+                                        </div>
+                                        
+                                        <div>
+                                              <label>Course</label>
+                                              <input type="text" name="engCourseType" class="form-control" placeholder="Enter your Coursetype Name ex:B.Tech">
+                                        </div>
+                                      
+                                      
+                                          <div>
+                                                <label>College name</label>
+                                                <input type="text" name="engCollegeName"  placeholder="Enter your college Name,place">
+                                            </div>
+                                     
+                                      
+                                      
+                                          <div >
+                                              <label>Percentage</label>
+                                              
+                                                  <input type="number" name="engPercent"  min="0" max="100" placeholder="Enter your Percentage">
+                                                  <span >%</span>
+                                              
+                                          </div>
+                                     
+                                      
+                                          <div>
+                                              <label>Year Of Pass</label>
+                                              
+                                                  <input type="number" name="engPassYear"  min="1950" max="2020" placeholder="Year of pass">
+                                           </div>
+                                      
+                                      <div>
+                                            <h5 >Post - Graduation </h5>
+                                        </div>
+                                        
+                                          <div>
+                                              <label>Course</label>
+                                              <input type="text" name="pGCoursetype" placeholder="Enter your Coursetype Name ex:M.Tech" required="false">
+                                          </div>
+                                      
+                                      
+                                          <div >
+                                                <label>College name</label>
+                                                <input type="text" name="pGCollegeName" placeholder="Enter your college Name,place">
+                                            </div>
+                                     
+                                      
+                                      
+                                          <div>
+                                              <label>Percentage</label>
+                                              
+                                                  <input type="number" name="pGPercent"  min="0" max="100" placeholder="Enter your Percentage">
+                                                  <span class="input-group-addon">%</span>
+                                             
+                                          </div>
+                                      
+                                      
+                                          <div class="form-group">
+                                              <label>Year Of Pass</label>
+                                              <input type="number" name="pGPassYear" class="form-control" min="1950" max="2020" placeholder="Year of pass">
+                                           </div>
+                                      </div>
+                              
+  </div>
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+</form>
+
+<script>
+  var p=1;
+var currentTab = 0; // Current tab is set to be the first tab (0)
+showTab(currentTab); // Display the current tab
+
+function showTab(n) {
+  // This function will display the specified tab of the form...
+  var x = document.getElementsByClassName("tab");
+  x[n].style.display = "block";
+  //... and fix the Previous/Next buttons:
+  if (n == 0) {
+    document.getElementById("prevBtn").style.display = "none";
+  } else {
+    document.getElementById("prevBtn").style.display = "inline";
+  }
+  if (n == (x.length - 1)) {
+    document.getElementById("nextBtn").innerHTML = "Submit";
+  } else {
+    document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  //... and run a function that will display the correct step indicator:
+  fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+  // This function will figure out which tab to display
+  var x = document.getElementsByClassName("tab");
+  // Exit the function if any field in the current tab is invalid:
+  if (n == 1 && !validateForm()) return false;
+  // Hide the current tab:
+  x[currentTab].style.display = "none";
+  // Increase or decrease the current tab by 1:
+  currentTab = currentTab + n;
+  // if you have reached the end of the form...
+  if (currentTab >= x.length) {
+    // ... the form gets submitted:
+    document.getElementById("regForm").submit();
+    return false;
+  }
+  // Otherwise, display the correct tab:
+  showTab(currentTab);
+}
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  for (i = 0; i < y.length; i++) {
+    // If a field is empty...
+    if (y[i].value == "") {
+      // add an "invalid" class to the field:
+      y[i].className += " invalid";
+      // and set the current valid status to false
+      valid = false;
+    }
+  }
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+
+</script>
+
+</body>
+</html>
