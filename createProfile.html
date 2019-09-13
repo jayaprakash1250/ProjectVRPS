@@ -21,20 +21,22 @@ body {
 }
 
 h1 {
-  text-align: center;  
+  text-align: center;
 }
-
 textarea, select,input[type="text"],[type="email"],[type="date"],[type="textarea"],[type="number"] {
   padding: 10px;
-  width: 325px;
+   width: 325px;
   font-size: 17px;
   font-family: Raleway;
   border: 1px solid #aaaaaa;
 }
 
+
+
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
-  background-color: #ffdddd;
+  border-color: red;
+
 }
 
 /* Hide all steps by default: */
@@ -66,8 +68,8 @@ button:hover {
   width: 15px;
   margin: 0 2px;
   background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
+  border: none;
+  border-radius: 100%;
   display: inline-block;
   opacity: 0.5;
 }
@@ -77,7 +79,7 @@ button:hover {
 }
 form input:focus,form input:focus
 {
- width: 350px;
+
  border-color: #2ecc71;
 
 }
@@ -90,7 +92,7 @@ form input[type="radio"]:focus
 form input[type="button"]:focus
 {
  width: 50px;
- 
+
 }
 form input[type="submit"],[type="button"]
 {
@@ -133,244 +135,177 @@ label {
 <form id="regForm" action="/register">
   <h1>Register</h1>
   <!-- One "tab" for each step in the form: -->
-  <div class="tab"><h3>Personal Details:</h3>
-   <div>
-        <label>Full Name(*)</label> <input type="text" required="required"
-          name="fullName"
-        >
+  <div class="tab"><h3>Personal Details</h3>
+     <div>
+        <label>Full Name(*)</label>
+        <input type="text"  name="fullName" id="fullName" >
       </div>
       <div>
-        <label>DOB</label> <input type="date" required="required" name="dob">
+        <label>Date of Birth</label> <input type="date" required="required" name="dob" id="dob">
       </div>
       <div>
-        <label>Gender</label> 
-        <input name="gender" type="Radio" value="male"
-          checked="checked"
-        > Male<input name="gender" type="Radio" placeholder=""
-          value="female"
-        > Female
+        <label>Gender(*)</label>
+        <input name="gender" id="gender" type="Radio" value="male"checked="checked"> Male
+        <input name="gender" id="gender" type="Radio"  value="female"> Female
       </div>
       <div>
-        <label>Mobile(*)</label> <input type="text" name="mobile"
-          required="required"
-        >
+        <label>Mobile(*)</label> <input type="text" name="mobile" id="mobile"required="required">
       </div>
       <div>
-        <label>Email(*)</label> <input type="email" required="required"
-          name=email
-        >
+        <label>Email(*)</label> <input type="email" required="required" id="email" name="email"  >
       </div>
       <div>
         <label>Address</label>
-        <textarea rows="" cols="" name="address"></textarea>
+        <textarea rows="4" cols="" name="address" id="address"></textarea>
       </div>
   </div>
-  <div class="tab"><h3>Work Details:<h3>
+  <div class="tab"><h3>Work Details<h3>
    <div>
-        <label>Designation(*)</label> <input type="text" required="required"
-          name="designation"
-        >
+        <label>Designation(*)</label> <input type="text" required="required" name="designation" id="designation" >
       </div>
       <div>
-        <label>Current CTC(*)</label> <input type="number" required="required"
-          name="ctc"
-        >
+        <label>Current CTC(*)</label> <input type="number" required="required"  name="ctc" id="ctc">
       </div>
       <div>
-        <label>Current Location(*)</label> <input type="text"
-          required="required" name="currentLocation"
-        >
+        <label>Current Location(*)</label> <input type="text"  required="required" name="currentLocation" id="currentLocation" >
       </div>
       <div>
-        <label>Required Location(*)</label> <input type="text"
-          required="required" name="requiredLocation"
-        >
+        <label>Required Location(*)</label> <input type="text" required="required" name="requiredLocation" id="requiredLocation" >
       </div>
       <div>
-        <label>Experience(*)</label> <input type="text" required="required"
-          name="experience"
-        >
+        <label>Experience(*)</label> <input type="number" required="required" id="experience" name="experience">
       </div>
       <div>
-        <label>Applied Job<small>(required)</small></label> <select
-          name="appliedjob" 
-        >
+        <label>Applied Job<small>(required)</small></label> <select  name="appliedjob" id="appliedjob">
           <option disabled="" selected="">- Tier -</option>
           <option value="tier-1">Tier-1</option>
           <option value="tier-2">Tier-2</option>
           <option value="tier-3">Tier-3</option>
         </select>
       </div>
-      <div >
+
         <div >
-          <label>Skills </label> <input name="skills" type="textarea"
-            placeholder=" c , java, oracle"
-          >
+          <label>Skills </label> <input name="skills" id="skills" type="text"  placeholder=" c , java, oracle">
         </div>
-      </div>
-  </div>
-  <div class="tab"><h3>Best Project:<h3>
-    <div id="project">
+
+     <h3>Best Project<h3>
+     <div id="project">
          <div>
             <label>ProjectTitle</label>
-          
-            <input type="text" name="title[]" placeholder="project title">
+            <input type="text" name="title" placeholder="project title" id="title">
           </div>
           <div>
           <label>Project startdate </label>
-          
-            <input type="date" name="startdate[]">
+            <input type="date" name="startdate" id="startdate">
           </div>
+
           <div>
           <label>Project Enddate </label>
-          
-            <input type="date" name="enddate[]">
+
+            <input type="date" name="enddate" id="enddate">
           </div>
-        
-       
+
+
           <div >
-            <label>ProjectDescription </label> <input name="projects[]"
-              type="textarea"  rows=""
-              placeholder="projectDescription" >
+            <label>ProjectDescription </label>
+            <textarea name="projects[]"rows="5"    placeholder="projectDescription" ></textarea>
           </div>
-        
-      
-      
-    </div>
-   
-      </div>
-  <div class="tab"><h3>Education Details:<h3>
-                        <div >
-                                       
-                                        <div >
-                                            <h5 > X Class </h5>
-                                        </div>
-                                        
-                                      
-                                          <div >
-                                                <label>School Name</label>
-                                                <input type="text" name="schoolName"  placeholder="Enter your School Name,place">
-                                            </div>
-                                     
-                                      
-                                      
-                                          <div >
-                                              <label>Percentage</label>
-                                              
-                                                  <input type="number" name="schoolPercent"  min="0" max="100" placeholder="Enter your Percentage">
-                                                  <span>%</span>
-                                              
-                                          </div>
-                                      
-                                     
-                                          <div >
-                                              <label>Year Of Pass</label>
-                                              
-                                                  <input type="number" name="schoolPassYear"  min="1950" max="2020" placeholder="Year of pass">
-                                                
-                                          </div>
-                                      
-                                      <div>
-                                            <h5 class="info-text"> 12th Class/Diploma </h5>
-                                        </div>
-                                        
-                                          <div >
-                                              <label>class</label>
-                                              <select name="board" >
-                                                    <option disabled="" selected="">- class -</option>
-                                                    <option value="state"> 12th class </option>
-                                                    <option value="central">Diploma </option>
-                                                    <option value="others">Others </option>
-                                                </select>
-                                          </div>
-                                     
-                                      
-                                      
-                                          <div >
-                                                <label>College name</label>
-                                                <input type="text" name="collegeName"  placeholder="Enter your college Name,place">
-                                            </div>
-                                    
-                                      
-                                      
-                                          <div >
-                                              <label>Percentage</label>
-                                              
-                                                  <input type="number" name="collegePercent" min="0" max="100" placeholder="Enter your Percentage">
-                                                  <span>%</span>
-                                              
-                                          </div>
-                                     
-                                      
-                                          <div >
-                                              <label>Year Of Pass</label>
-                                              <input type="number" name="collegePassYear" min="1950" max="2020" placeholder="Year of pass">
-                                           </div>
-                                     
-                                      <div>
-                                            <h5 class="info-text"> Graduation </h5>
-                                        </div>
-                                        
-                                        <div>
-                                              <label>Course</label>
-                                              <input type="text" name="engCourseType" class="form-control" placeholder="Enter your Coursetype Name ex:B.Tech">
-                                        </div>
-                                      
-                                      
-                                          <div>
-                                                <label>College name</label>
-                                                <input type="text" name="engCollegeName"  placeholder="Enter your college Name,place">
-                                            </div>
-                                     
-                                      
-                                      
-                                          <div >
-                                              <label>Percentage</label>
-                                              
-                                                  <input type="number" name="engPercent"  min="0" max="100" placeholder="Enter your Percentage">
-                                                  <span >%</span>
-                                              
-                                          </div>
-                                     
-                                      
-                                          <div>
-                                              <label>Year Of Pass</label>
-                                              
-                                                  <input type="number" name="engPassYear"  min="1950" max="2020" placeholder="Year of pass">
-                                           </div>
-                                      
-                                      <div>
-                                            <h5 >Post - Graduation </h5>
-                                        </div>
-                                        
-                                          <div>
-                                              <label>Course</label>
-                                              <input type="text" name="pGCoursetype" placeholder="Enter your Coursetype Name ex:M.Tech" required="false">
-                                          </div>
-                                      
-                                      
-                                          <div >
-                                                <label>College name</label>
-                                                <input type="text" name="pGCollegeName" placeholder="Enter your college Name,place">
-                                            </div>
-                                     
-                                      
-                                      
-                                          <div>
-                                              <label>Percentage</label>
-                                              
-                                                  <input type="number" name="pGPercent"  min="0" max="100" placeholder="Enter your Percentage">
-                                                  <span class="input-group-addon">%</span>
-                                             
-                                          </div>
-                                      
-                                      
-                                          <div class="form-group">
-                                              <label>Year Of Pass</label>
-                                              <input type="number" name="pGPassYear" class="form-control" min="1950" max="2020" placeholder="Year of pass">
-                                           </div>
-                                      </div>
-                              
+  </div>
+
+  </div>
+   <div class="tab"><h3>Education Details<h3>
+              <div >
+              <div >
+                    <h5 > X Class </h5>
+              </div>
+              <div >
+                    <label>School Name</label>
+                    <input type="text" name="schoolName" id="schoolName" placeholder="Enter your School Name,place">
+                </div>
+
+                <div >
+                    <label>Percentage</label>
+
+                        <input type="number" name="schoolPercent" id="schoolPercent" min="0" max="100" placeholder="Enter your Percentage">
+                        <span>%</span>
+
+                </div>
+
+                <div >
+                    <label>Year Of Pass</label>
+                    <input type="number" name="schoolPassYear" id="schoolPassYear" min="1950" max="2020" placeholder="Year of pass">
+
+                </div>
+                <div>
+                      <h5> 12th Class/Diploma </h5>
+                  </div>
+
+                  <div >
+                        <label>College name</label>
+                        <input type="text" name="collegeName" id="collegeName" placeholder="Enter your college Name,place">
+                    </div>
+
+                    <div >
+                        <label>CollegePercent</label>
+                        <input type="number" name="collegePercent" id="collegePercent" min="1950" max="2020" placeholder="Year of pass">
+                     </div>
+                     <div >
+                         <label>Year Of Pass</label>
+                         <input type="number" name="collegePassYear" id="collegePassYear" min="1950" max="2020" placeholder="Year of pass">
+
+                     </div>
+
+                     <div>
+                           <h5 > Graduation </h5>
+                       </div>
+                       <div>
+                             <label>Course</label>
+                             <input type="text" name="engCourseType"  id="engCourseType" placeholder="Enter your Coursetype Name ex:B.Tech">
+                       </div>
+                       <div>
+                             <label>College name</label>
+                             <input type="text" name="engCollegeName" id="engCollegeName" placeholder="Enter your college Name,place">
+                         </div>
+                         <div >
+                             <label>Percentage</label>
+
+                                 <input type="number" name="engPercent" id="engPercent" min="0" max="100" placeholder="Enter your Percentage">
+                                 <span >%</span>
+
+                         </div>
+                         <div>
+                             <label>Year Of Pass</label>
+
+                                 <input type="number" name="engPassYear"  id="engPassYear" min="1950" max="2020" placeholder="Year of pass">
+                          </div>
+
+                          <div>
+                                <h5 >Post - Graduation </h5>
+                            </div>
+
+                            <div>
+                                <label>Course</label>
+                                <input type="text" name="pGCoursetype" id="pGCoursetype" placeholder="Enter your Coursetype Name ex:M.Tech" required="false">
+                            </div>
+
+                            <div >
+                                  <label>College name</label>
+                                  <input type="text" name="pGCollegeName" id="pGCollegeName" placeholder="Enter your college Name,place">
+                              </div>
+
+                              <div>
+                                  <label>Percentage</label>
+
+                                      <input type="number" name="pGPercent" id="pGPercent"  min="0" max="100" placeholder="Enter your Percentage">
+                                      <span class="input-group-addon">%</span>
+
+                              </div>
+                              <div class="form-group">
+                                  <label>Year Of Pass</label>
+                                  <input type="number" name="pGPassYear" id="pGPassYear" min="1950" max="2020" placeholder="Year of pass">
+                               </div>
+          </div>
+
   </div>
   <div style="overflow:auto;">
     <div style="float:right;">
@@ -388,7 +323,8 @@ label {
 </form>
 
 <script>
-  var p=1;
+
+var p=1;
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -413,6 +349,9 @@ function showTab(n) {
 
 function nextPrev(n) {
   // This function will figure out which tab to display
+  if(currentTab==0)
+     personal();
+
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) return false;
@@ -436,7 +375,8 @@ function validateForm() {
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
+
+  /*for (i = 0; i < y.length; i++) {
     // If a field is empty...
     if (y[i].value == "") {
       // add an "invalid" class to the field:
@@ -444,9 +384,11 @@ function validateForm() {
       // and set the current valid status to false
       valid = false;
     }
-  }
+  }*/
+
   // If the valid status is true, mark the step as finished and valid:
-  if (valid) {
+  if (valid)
+  {
     document.getElementsByClassName("step")[currentTab].className += " finish";
   }
   return valid; // return the valid status
@@ -455,11 +397,22 @@ function validateForm() {
 function fixStepIndicator(n) {
   // This function removes the "active" class of all steps...
   var i, x = document.getElementsByClassName("step");
+
   for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace(" active", "");
   }
   //... and adds the "active" class on the current step:
   x[n].className += " active";
+
+}
+
+function personal()
+{
+  x = document.getElementsByClassName("tab");
+  var y= x[0].getElementsByTagName("input")["fullName"].value;
+ if(y.length>=5)
+  y.className+="invalid";
+
 }
 
 </script>
