@@ -38,6 +38,10 @@ input.invalid {
   border-color: red;
 
 }
+input.valid
+{
+	border-color:green;
+}
 
 /* Hide all steps by default: */
 .tab {
@@ -132,7 +136,7 @@ label {
 </style>
 <body>
 
-<form id="regForm" action="/register">
+<form id="regForm" action="../CreateProfileServlet" method="Post">
   <h1>Register</h1>
   <!-- One "tab" for each step in the form: -->
   <div class="tab"><h3>Personal Details</h3>
@@ -167,40 +171,58 @@ label {
         <label>Current CTC(*)</label> <input type="number" required="required"  name="ctc" id="ctc">
       </div>
       <div>
-        <label>Current Location(*)</label> <input type="text"  required="required" name="currentLocation" id="currentLocation" >
+        <label>CurrentLocation(*)</label> 
+        <select  name="currentLocation" id="appliedjob">
+         
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Pune">Pune</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Gurgaon">Gurgaon</option>
+        </select>
       </div>
       <div>
-        <label>Required Location(*)</label> <input type="text" required="required" name="requiredLocation" id="requiredLocation" >
+        <label>Required Location(*)</label> 
+        <select  name="requiredLocation" id="appliedjob">
+         
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Pune">Pune</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Gurgaon">Gurgaon</option>
+        </select>
       </div>
       <div>
         <label>Experience(*)</label> <input type="number" required="required" id="experience" name="experience">
       </div>
       <div>
-        <label>Applied Job<small>(required)</small></label> <select  name="appliedjob" id="appliedjob">
-          <option disabled="" selected="">- Tier -</option>
-          <option value="tier-1">Tier-1</option>
+        <label>Applied Job(*)<small></small></label> <select  name="appliedjob" id="appliedjob">
+         
+          <option value="tier-1">Tier-3</option>
           <option value="tier-2">Tier-2</option>
-          <option value="tier-3">Tier-3</option>
+          <option value="tier-3">Tier-1</option>
         </select>
       </div>
 
         <div >
-          <label>Skills </label> <input name="skills" id="skills" type="text"  placeholder=" c , java, oracle">
+          <label>Skills (*)</label> <input name="skills" id="skills" type="text"  placeholder=" c , java, oracle">
         </div>
 
-     <h3>Best Project<h3>
-     <div id="project">
+     <h3>Working Project<h3>
+    
          <div>
-            <label>ProjectTitle</label>
+            <label>ProjectTitle(*)</label>
             <input type="text" name="title" placeholder="project title" id="title">
           </div>
           <div>
-          <label>Project startdate </label>
+          <label>Project startdate (*)</label>
             <input type="date" name="startdate" id="startdate">
           </div>
 
           <div>
-          <label>Project Enddate </label>
+          <label>Project Enddate(*) </label>
 
             <input type="date" name="enddate" id="enddate">
           </div>
@@ -208,9 +230,9 @@ label {
 
           <div >
             <label>ProjectDescription </label>
-            <textarea name="projects[]"rows="5"    placeholder="projectDescription" ></textarea>
+            <textarea name="description"rows="5"    placeholder="projectDescription" ></textarea>
           </div>
-  </div>
+ 
 
   </div>
    <div class="tab"><h3>Education Details<h3>
@@ -349,8 +371,7 @@ function showTab(n) {
 
 function nextPrev(n) {
   // This function will figure out which tab to display
-  if(currentTab==0)
-     personal();
+  
 
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
@@ -375,6 +396,59 @@ function validateForm() {
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByTagName("input");
   // A loop that checks every input field in the current tab:
+  
+  if(currentTab==0)
+  {
+   var fullName = y["fullName"].value;
+  
+   var mobile = y["mobile"].value;
+  
+   var dob =y["dob"].value; 
+
+   var email = y["email"].value;
+
+   if(stringLengthAndEmpty(fullName))
+   {
+    y["fullName"].className += "invalid";
+    valid=false;
+   }
+   else
+   {
+   	y["fullName"].className += "valid";
+   }
+
+   if(mobile.length!=10 || isNaN(mobile))
+   {
+    y["mobile"].className += "invalid";
+    valid=false;
+   }
+    else
+   {
+   	y["mobile"].className += "valid";
+   }
+
+   if(isFutureDate(dob) || dob=="")
+   {
+    y["dob"].className += "invalid";
+    valid =false;
+
+   }
+    else
+   {
+   	y["dob"].className += "valid";
+   }
+
+   if(!validateEmail(email))
+   {
+   	 y["email"].className += "invalid";
+    valid =false;
+   }
+    else
+   {
+   	y["email"].className += "valid";
+   }
+     
+  }
 
   /*for (i = 0; i < y.length; i++) {
     // If a field is empty...
@@ -385,6 +459,194 @@ function validateForm() {
       valid = false;
     }
   }*/
+
+  if(currentTab==1)
+  {
+
+      var designation=y["designation"].value;
+      var ctc=y["ctc"].value;
+      var experience=y["experience"].value;
+      var skills = y["skills"].value;
+      var title = y["title"].value;
+    
+      var startdate = y["startdate"].value;
+      var enddate =y["enddate"].value;
+      if(stringLengthAndEmpty(designation))
+      {
+        y["designation"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["designation"].className += "valid";
+      }
+      if(ctc.length>=8 && isNaN(ctc) ||ctc=="")
+      {
+        y["ctc"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["ctc"].className += "valid";
+      }
+
+      if(numberLength(experience))
+      {
+        y["experience"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["experience"].className += "valid";
+      }
+      if(stringLengthAndEmpty(skills))
+      {
+        y["skills"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["skills"].className += "valid";
+      }
+      if(stringLengthAndEmpty(title))
+      {
+        y["title"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["title"].className += "valid";
+      }
+      if(isFutureDate(startdate) || startdate.length==0)
+      {
+        y["startdate"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["startdate"].className += "valid";
+      }
+      if(isEdLtSd(startdate,enddate) || enddate=="")
+      {
+        y["enddate"].className += "invalid";
+        valid=false;
+      }
+      else
+      {
+      	y["enddate"].className += "valid";
+      }
+
+  }
+  if(currentTab==2)
+  {
+    var schoolName = y["schoolName"].value;
+    var schoolPercent=y["schoolPercent"].value;
+    var schoolPassYear=y["schoolPassYear"].value;
+    if(stringLengthAndEmpty(schoolName))
+    {
+      y["schoolName"].className += "invalid";
+        valid=false;
+
+    }
+    else
+      {
+      	y["schoolName"].className += "valid";
+      }
+    if(numberLength(schoolPercent) )
+    {
+      y["schoolPercent"].className += "invalid";
+        valid=false;
+    }
+    else
+      {
+      	y["schoolPercent"].className += "valid";
+      }
+    if(isYear(schoolPassYear))
+    {
+      y["schoolPassYear"].className += "invalid";
+        valid=false;
+    }
+    else
+      {
+      	y["schoolPassYear"].className += "valid";
+      }
+
+    var collegeName=y["collegeName"].value;
+    var collegePercent=y["collegePercent"].value;
+    var collegePassYear=y["collegePassYear"].value;
+
+    if(stringLengthAndEmpty(collegeName))
+    {
+      y["collegeName"].className += "invalid";
+        valid=false;
+    }
+    else
+      {
+      	y["collegeName"].className += "valid";
+      }
+    if(numberLength(collegePercent))
+    {
+      y["collegePercent"].className += "invalid";
+        valid=false;
+    }
+    else
+     {
+      	y["collegePercent"].className += "valid";
+     }
+    if(isYear(collegePassYear))
+    {
+      y["collegePassYear"].className += "invalid";
+        valid=false;
+    }
+    else
+      {
+      	y["collegePassYear"].className += "valid";
+      }
+
+    var engCollegeName = y["engCollegeName"].value;
+    var engCourseType =y["engCourseType"].value;
+    var engPercent =y["engPercent"].value;
+    var engPassYear =y["engPassYear"].value;
+
+    if(stringLengthAndEmpty(engCollegeName))
+    {
+      y["engCollegeName"].className += "invalid";
+        valid=false;
+    }
+   else
+    {
+      	y["engCollegeName"].className += "valid";
+    }
+    if(stringLengthAndEmpty(engCourseType))
+    {
+      y["engCourseType"].className += "invalid";
+        valid=false;
+    }
+    else
+    {
+      	y["engCourseType"].className += "valid";
+    }
+    if(numberLength(engPercent))
+    {
+      y["engPercent"].className += "invalid";
+        valid=false;
+    }
+    else
+    {
+      	y["engPercent"].className += "valid";
+    }
+    if(isYear(engPassYear))
+    {
+      y["engPassYear"].className += "invalid";
+        valid=false;
+    }
+    else
+    {
+      	y["engPassYear"].className += "valid";
+    }
+
+
+  }
 
   // If the valid status is true, mark the step as finished and valid:
   if (valid)
@@ -406,14 +668,53 @@ function fixStepIndicator(n) {
 
 }
 
-function personal()
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+function isFutureDate(date)
 {
-  x = document.getElementsByClassName("tab");
-  var y= x[0].getElementsByTagName("input")["fullName"].value;
- if(y.length>=5)
-  y.className+="invalid";
+var date=new Date(date) 
+
+var currentDate = new Date();
+
+if(date > currentDate)
+  return true;
+
+ return false;
+}
+function isYear(year)
+{
+  if(year.length==4 || isNaN(year) || year=="")
+     return true;
+
+  return false
+}
+function numberLength(number)
+{
+  if(number.length>2 || isNaN(number) || number=="")
+    return true;
+
+  return false;
+}
+function stringLengthAndEmpty(string)
+{
+ if(string.length>=50 || string=="")
+  return true;
+
+return false;
 
 }
+function isEdLtSd(startdate,enddate)
+{
+  
+  if(startdate > enddate)
+    return true;
+  return false;
+}
+
+
 
 </script>
 
